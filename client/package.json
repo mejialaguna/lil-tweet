@@ -1,6 +1,5 @@
 {
-  "name": "twitter-clone",
-  "proxy": "https://tweeter-lil-bro.herokuapp.com/",
+  "name": "lil-tweet",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
