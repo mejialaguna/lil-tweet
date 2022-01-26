@@ -7,7 +7,7 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import { setContext } from "apollo-link-context"; // using apollo-link-context
 
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: "https://lil-tweet.herokuapp.com/",
 });
 
 const authLink = setContext((_, { headers }) => {
