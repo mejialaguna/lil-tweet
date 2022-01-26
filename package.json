@@ -21,7 +21,7 @@
     "bugs": {
         "url": "https://github.com/mejialaguna/lil-tweet"
     },
-    "homepage": "https://github.com/mejialaguna/lil-tweet",
+    "homepage": "https://polar-citadel-75841.herokuapp.com/",
     "devDependencies": {
         "concurrently": "^6.3.0"
     }
