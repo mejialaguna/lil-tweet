@@ -30,7 +30,7 @@ function DeleteBtn(props) {
           );
           cache.writeQuery({ query: GET_POSTS, data });
         }
-        refreshDelete && refreshDelete();
+        refreshDelete && refreshDelete(); // props comming from single post component
       },
       variables: {
         postId: postId,
@@ -55,11 +55,11 @@ function DeleteBtn(props) {
             <Icon name="trash" style={{ margin: 0 }} />
           </Button>
         }
-        content={<Button color="red" content="are you sure?." />}
+        content={<Button color="red" content="are you sure?" />}
         on="click"
         className="confirmText"
         onClick={deleteOnePost}
-        position="top right"
+        position="top center"
         onCancel={() => setConfirmOpen(false)}
       />
       {/* <Confirm

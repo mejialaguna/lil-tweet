@@ -1,7 +1,7 @@
 const { User, Post } = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { AuthenticationError, UserInputError } = require("apollo-server");
+const { AuthenticationError, UserInputError } = require("apollo-server-express");
 const {
   validateRegisterInput,
   validateLoginInput,
@@ -126,10 +126,6 @@ const resolvers = {
 
       const post = await newPost.save();
 
-      context.pubsub.publish("NEW_POST", {
-        newPost: post,
-      });
-
       return post;
     },
     async deletePost(_, { postId }, context) {
@@ -203,13 +199,6 @@ const resolvers = {
       } else {
         throw new UserInputError("post not found");
       }
-    },
-  },
-  Subscription: {
-    newPost: {
-      subscribe: (parents, args, { pubSub }) => {
-        pubSub.asyncIterator("NEW_POST");
-      },
     },
   },
 };

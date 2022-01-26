@@ -47,9 +47,10 @@ const typeDefs = gql`
     likePost(postId: ID!): Post!
   }
 
-  type Subscription {
-    newPost: Post!
-  }
+  
 `;
 
 module.exports = typeDefs;
+// # type Subscription {
+//   #   newPost: Post!
+//   # }
