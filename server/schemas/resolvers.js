@@ -7,8 +7,9 @@ const {
   validateLoginInput,
 } = require("../utils/validate");
 const checkAuth = require("../utils/check-auth");
+require("dotenv").config();
 
-const { secret } = require("../config/secret");
+const secret = process.env.secret;
 
 function gToken(user) {
   return jwt.sign(

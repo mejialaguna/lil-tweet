@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/twitter-clone",
+  process.env.MONGODB_URI || "mongodb://localhost/tweeter",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
