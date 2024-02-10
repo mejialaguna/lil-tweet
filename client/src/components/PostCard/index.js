@@ -41,7 +41,7 @@ function PostCard({ post }) {
       <Card.Content extra>
         <LikeBtn post={post} user={user} />
 
-        <Button labelPosition="right" as={Link} to={`/post/${post.id}`}>
+        <Button labelPosition="right" as={Link} to={`${!user ? '/login' : '/post/' + post.id}`}>
           <Popup
             content="see comments"
             trigger={
