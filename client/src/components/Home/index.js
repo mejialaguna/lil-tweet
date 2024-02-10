@@ -1,6 +1,9 @@
-import React, { memo, useContext } from "react";
-import { GET_POSTS } from "../../utils/queries";
-import { useQuery } from "@apollo/react-hooks";
+import React, {
+  memo,
+  useContext,
+} from 'react';
+import { GET_POSTS } from '../../utils/queries';
+import { useQuery } from '@apollo/react-hooks';
 import {
   Grid,
   Dimmer,
@@ -9,32 +12,32 @@ import {
   Segment,
   GridColumn,
   Transition,
-} from "semantic-ui-react";
-import { AuthContext } from "../../utils/auth";
-import { PostCard, PostForm } from '../../components'
+} from 'semantic-ui-react';
+import { AuthContext } from '../../utils/auth';
+import { PostCard, PostForm } from '../../components';
 
 export const Home = memo(() => {
   const { user } = useContext(AuthContext);
   const {
     loading,
-    data: { getPosts: posts }
+    data: { getPosts: posts },
   } = useQuery(GET_POSTS);
 
   return (
     <div>
-      <Grid columns="2" divided>
+      <Grid columns='2' divided>
         {user && (
-          <GridColumn >
+          <GridColumn>
             <PostForm />
           </GridColumn>
         )}
         <Grid.Row>
           {loading ? (
-            <Segment style={{ display: "flex", margin: "15% auto" }}>
+            <Segment style={{ display: 'flex', margin: '15% auto' }}>
               <Dimmer active inverted>
-                <Loader size="massive">Loading All Post.....</Loader>
+                <Loader size='massive'>Loading All Post.....</Loader>
               </Dimmer>
-              <Image src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
+              <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
             </Segment>
           ) : (
             <>
@@ -54,5 +57,4 @@ export const Home = memo(() => {
       </Grid>
     </div>
   );
-}
-)
+});

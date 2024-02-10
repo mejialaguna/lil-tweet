@@ -5,27 +5,21 @@ import { LOGIN_USER } from "../../utils/mutations";
 import "./index.css";
 import { useForm } from "../../utils/hooks";
 import { AuthContext } from "../../utils/auth";
-import SnackBar from "../SnackBar";
 
 function Register(props) {
   const [errors, setErrors] = useState({});
-  const context = useContext(AuthContext);
-  const [SnackBarOpen, setSnackBarOpen] = useState(false);
+  const { login } = useContext(AuthContext);
 
   const { onChange, onSubmit, values } = useForm(SignUser, {
     username: "",
     password: "",
   });
 
-  const handleSnackBar = () => {
-    setSnackBarOpen(true);
-  };
-
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData } }) {
       // instead of data i just destructure the result check register to check or the console.log on the line bellow
 
-      context.login(userData);
+      login(userData);
       props.history.push("/"); //take you back to home page
     },
     onError(err) {
@@ -36,7 +30,6 @@ function Register(props) {
       password: values.password, // or we can use just word => values
     },
   });
-
 
   function SignUser() {
     loginUser();
@@ -65,19 +58,10 @@ function Register(props) {
         <Button
           type="submit"
           primary
-          onClick={handleSnackBar}
           disabled={!(values.password && values.username)}
         >
           LOGIN
         </Button>
-        {Object.keys(errors).length === 0 && (
-          <SnackBar
-            SnackBarOpen={SnackBarOpen}
-            severity={"success"}
-            message={`Welcome Back. 😄 ${values.username} `}
-            setSnackBarOpen={setSnackBarOpen}
-          />
-        )}
       </Form>
       {Object.keys(errors).length > 0 && (
         <div className="ui error message">

@@ -125,7 +125,6 @@ function SinglePost(props) {
                           disabled={!comment}
                           onClick={makeComment}
                         >
-                          {" "}
                           Submit
                         </button>
                       </div>

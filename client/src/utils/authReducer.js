@@ -10,6 +10,11 @@ function authReducer(state, action) {
         ...state,
         user: null,
       };
+    case "isSnackBarOpen":
+      return {
+        ...state,
+        isSnackBarOpen: action.payload,
+      }
     default:
       return state;
   }

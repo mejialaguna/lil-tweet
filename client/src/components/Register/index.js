@@ -5,17 +5,10 @@ import { ADD_USER } from "../../utils/mutations";
 import "./index.css";
 import { AuthContext } from "../../utils/auth"
 import { useForm } from "../../utils/hooks";
-import SnackBar from "../SnackBar";
 
 function Register(props) {// getting props from parent element app.js
   const context = useContext(AuthContext)
   const [errors, setErrors] = useState({});
-
-  const [SnackBarOpen, setSnackBarOpen] = useState(false);
-
-  const handleSnackBar = () => {
-    setSnackBarOpen(true);
-  };
 
   const { onChange, onSubmit, values } = useForm(registerUser, {
     username: "",
@@ -82,7 +75,6 @@ function Register(props) {// getting props from parent element app.js
           type="password"
         />
         <Button
-          onClick={handleSnackBar}
           type="submit"
           primary
           disabled={
@@ -96,14 +88,6 @@ function Register(props) {// getting props from parent element app.js
         >
           Register
         </Button>
-        {Object.keys(errors).length === 0 && (
-          <SnackBar
-            SnackBarOpen={SnackBarOpen}
-            severity={"info"}
-            message={`Welcome , Happy to have with us 😄 ${values.username}`}
-            setSnackBarOpen={setSnackBarOpen}
-          />
-        )}
       </Form>
       {Object.keys(errors).length > 0 && (
         <div className="ui error message">

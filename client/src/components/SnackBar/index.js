@@ -1,28 +1,31 @@
-import React from "react";
-import Stack from "@mui/material/Stack";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
+import React, { useContext, useEffect } from 'react';
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import { AuthContext } from '../../utils/auth';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
 });
 
-function SnackBar({ SnackBarOpen, setSnackBarOpen, severity, message }) {
+function SnackBar({ severity, message }) {
+  const { isSnackBarOpen, openSnackBar } = useContext(AuthContext)
   const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
-    setSnackBarOpen(false);
   };
 
+  useEffect(() => {
+      setTimeout(() => {
+        openSnackBar(!isSnackBarOpen);
+      }, 3000);
+  }, [isSnackBarOpen, openSnackBar]);
+
   return (
-    <Stack spacing={2} sx={{ width: "100%" }}>
-      <Snackbar
-        open={SnackBarOpen}
-        autoHideDuration={10000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity={severity} sx={{ width: "100%" }}>
+    <Stack spacing={2} sx={{ width: '100%' }}>
+      <Snackbar open={isSnackBarOpen} autoHideDuration={2000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
           {message}
         </Alert>
       </Snackbar>

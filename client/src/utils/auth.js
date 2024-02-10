@@ -4,6 +4,7 @@ import authReducer from "./authReducer";
 
 const initialState = {
   user: null,
+  isSnackBarOpen: false
 };
 if (localStorage.getItem("jwtToken")) {
   const token = jwtDecode(localStorage.getItem("jwtToken"));
@@ -14,14 +15,17 @@ if (localStorage.getItem("jwtToken")) {
   }
 }
 
-const AuthContext = createContext({
-  User: null,
-  login: (data) => {},
-  logOut: () => {},
-});
+const AuthContext = createContext({});
 
 function AuthProvider(props) {
   const [state, dispatch] = useReducer(authReducer, initialState);
+
+  function openSnackBar(payload) {
+    dispatch({
+      type: "isSnackBarOpen",
+      payload,
+    });
+  }
 
   function login(userData) {
     localStorage.setItem("jwtToken", userData.token);
@@ -29,16 +33,25 @@ function AuthProvider(props) {
       type: "LOGIN",
       payload: userData,
     });
+    openSnackBar(true);
   }
 
   function logout() {
     localStorage.removeItem("jwtToken");
     dispatch({ type: "LOGOUT" });
+    openSnackBar(true);
   }
 
   return (
     <AuthContext.Provider
-      value={{ user: state.user, login, logout }}
+      value={{
+       ...state,
+
+      // methods
+        login,
+        logout,
+        openSnackBar,
+      }}
       {...props}
     />
   );
