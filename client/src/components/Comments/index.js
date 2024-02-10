@@ -5,7 +5,7 @@ import DeleteBtn from "../DeleteBtn";
 
 function Comments(props) {
   const { getPost, user } = props;
-    
+
   return (
     <div>
       {getPost.comments.map((comment) => { 

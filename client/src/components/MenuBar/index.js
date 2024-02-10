@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { memo, useContext, useState } from "react";
 import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../utils/auth";
+import { AuthContext } from "../../utils/auth";
 import SnackBar from "../SnackBar";
 
-function MenuBar() {
+export const MenuBar = memo(() => {
   const { user, logout } = useContext(AuthContext);
   const pathname = window.location.pathname;
   const path = pathname === "/" ? "home" : pathname.slice(1);
@@ -80,6 +80,4 @@ function MenuBar() {
       />
     </>
   );
-}
-
-export default MenuBar;
+})

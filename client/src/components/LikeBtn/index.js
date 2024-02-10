@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { Link } from "react-router-dom";
-import { Button, Icon, Label , Popup } from "semantic-ui-react";
+import { Button, Icon, Label, Popup } from "semantic-ui-react";
 import { useMutation } from "@apollo/react-hooks";
-import { LIKED_POST } from "../utils/mutations";
+import { LIKED_POST } from "../../utils/mutations";
 
 const style = {
   borderRadius: 5,
@@ -55,4 +55,4 @@ function LikeBtn({ post, user }) {
   );
 }
 
-export default LikeBtn;
+export default memo(LikeBtn);

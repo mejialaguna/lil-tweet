@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { Button, Form } from "semantic-ui-react";
-import { useForm } from "../utils/hooks";
+import { useForm } from "../../utils/hooks";
 import { useMutation } from "@apollo/react-hooks";
-import { ADD_POST } from "../utils/mutations";
-import { GET_POSTS } from "../utils/queries";
+import { ADD_POST } from "../../utils/mutations";
+import { GET_POSTS } from "../../utils/queries";
 
 
 function PostForm() {
@@ -26,6 +26,7 @@ function PostForm() {
   function createPostCallBack() {
     createPost();
   }
+
   return (
     <>
       <Form onSubmit={onSubmit}>
@@ -44,7 +45,7 @@ function PostForm() {
         </Form.Field>
       </Form>
       {error && (
-        <div className="ui error message" style={{marginBottom: 20}}>
+        <div className="ui error message" style={{ marginBottom: 20 }}>
           <ul className="list">
             <li>{error.graphQLErrors[0].message}</li>
           </ul>
@@ -53,4 +54,4 @@ function PostForm() {
     </>
   );
 }
-export default PostForm;
+export default memo(PostForm);

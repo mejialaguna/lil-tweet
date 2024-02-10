@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Card, Image, Button, Icon, Label, Popup } from "semantic-ui-react";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../utils/auth";
+import { AuthContext } from "../../utils/auth";
 import LikeBtn from "../LikeBtn";
 import DeleteBtn from "../DeleteBtn";
 
@@ -43,7 +43,7 @@ function PostCard({ post }) {
 
         <Button labelPosition="right" as={Link} to={`/post/${post.id}`}>
           <Popup
-            content= "see comments" 
+            content="see comments"
             trigger={
               <Button color="blue" basic>
                 <Icon name="comments" />

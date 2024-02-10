@@ -1,0 +1,13 @@
+export { Home } from "./Home";
+export {default as AuthRoute} from "./AuthRoute";
+export {default as Comments} from "./Comments";
+export {default as DeleteBtn} from "./DeleteBtn";
+export {default as LikeBtn} from "./LikeBtn";
+export { default as Login } from "./Login";
+export { MenuBar } from "./MenuBar";
+export {default as ModalInfo} from "./ModalInfo";
+export {default as PostForm} from "./PostForm";
+export {default as PostCard} from "./PostCard";
+export {default as SinglePost} from "./SinglePost";
+export { default as SnackBar } from "./SnackBar";
+export {default as Register} from "./Register";

@@ -2,15 +2,15 @@ import React, { useContext, useState } from "react";
 import { Button, Card, Icon, Label, Popup } from "semantic-ui-react";
 import moment from "moment";
 import { useQuery } from "@apollo/react-hooks";
-import { GET_SINGLE_POST } from "../utils/queries";
+import { GET_SINGLE_POST } from "../../utils/queries";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../utils/auth";
-import { Grid, Dimmer, Loader, Image, Form ,  Segment } from "semantic-ui-react";
+import { AuthContext } from "../../utils/auth";
+import { Grid, Dimmer, Loader, Image, Form, Segment } from "semantic-ui-react";
 import LikeBtn from "../LikeBtn";
 import DeleteBtn from "../DeleteBtn";
 import Comments from "../Comments";
 import { useMutation } from "@apollo/react-hooks";
-import { CREATE_COMMENT } from "../utils/mutations";
+import { CREATE_COMMENT } from "../../utils/mutations";
 
 const style = {
   borderRadius: 5,
@@ -19,7 +19,7 @@ const style = {
 
 function SinglePost(props) {
   const { user } = useContext(AuthContext);
-  
+
   const { postId } = useParams();
   //   const postId2 = props.match.params.postId;
 
@@ -29,7 +29,7 @@ function SinglePost(props) {
     },
   });
 
-  const [ comment , setComment] = useState("")
+  const [comment, setComment] = useState("")
 
   const [makeComment] = useMutation(CREATE_COMMENT, {
     update() {
@@ -40,7 +40,6 @@ function SinglePost(props) {
       body: comment,
     }
   })
-
 
   function refreshDelete() {
     props.history.push("/");

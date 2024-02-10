@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { GET_POSTS } from "../utils/queries";
+import React, { memo, useContext } from "react";
+import { GET_POSTS } from "../../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
 import {
   Grid,
@@ -10,11 +10,10 @@ import {
   GridColumn,
   Transition,
 } from "semantic-ui-react";
-import PostCard from "../PostCard";
-import { AuthContext } from "../utils/auth";
-import PostForm from "../PostForm";
+import { AuthContext } from "../../utils/auth";
+import { PostCard, PostForm } from '../../components'
 
-function Home() {
+export const Home = memo(() => {
   const { user } = useContext(AuthContext);
   const {
     loading,
@@ -24,11 +23,11 @@ function Home() {
   return (
     <div>
       <Grid columns="2" divided>
-          {user && (
-            <GridColumn >
-              <PostForm />
-            </GridColumn>
-          )}
+        {user && (
+          <GridColumn >
+            <PostForm />
+          </GridColumn>
+        )}
         <Grid.Row>
           {loading ? (
             <Segment style={{ display: "flex", margin: "15% auto" }}>
@@ -56,5 +55,4 @@ function Home() {
     </div>
   );
 }
-
-export default Home;
+)

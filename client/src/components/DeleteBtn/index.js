@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { Button, Icon, Popup } from "semantic-ui-react";
-import { DELETE_POST } from "../utils/mutations";
-import { GET_POSTS } from "../utils/queries";
-import { DELETE_COMMENT } from "../utils/mutations";
+import { DELETE_POST } from "../../utils/mutations";
+import { GET_POSTS } from "../../utils/queries";
+import { DELETE_COMMENT } from "../../utils/mutations";
 import "./index.css";
 
 const style = {
   borderRadius: 5,
-  // opacity: 0.7,
 };
 
 function DeleteBtn(props) {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const { postId, refreshDelete, commentId } = props;
-
 
   const [deleteOnePost] = useMutation(
     commentId && postId ? DELETE_COMMENT : DELETE_POST,

@@ -1,10 +1,10 @@
-import React, { useState , useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { useMutation } from "@apollo/react-hooks";
-import { ADD_USER } from "../utils/mutations";
+import { ADD_USER } from "../../utils/mutations";
 import "./index.css";
-import { AuthContext } from "../utils/auth"
-import { useForm } from "../utils/hooks";
+import { AuthContext } from "../../utils/auth"
+import { useForm } from "../../utils/hooks";
 import SnackBar from "../SnackBar";
 
 function Register(props) {// getting props from parent element app.js
@@ -17,8 +17,6 @@ function Register(props) {// getting props from parent element app.js
     setSnackBarOpen(true);
   };
 
-
-
   const { onChange, onSubmit, values } = useForm(registerUser, {
     username: "",
     email: "",
@@ -27,12 +25,12 @@ function Register(props) {// getting props from parent element app.js
   });
 
   const [addUser, { loading }] = useMutation(ADD_USER, {
-    update(_, {data: {register : userData}}) { // firs we get the result instead of destructuring it just result
+    update(_, { data: { register: userData } }) { // firs we get the result instead of destructuring it just result
       context.login(userData); // result.data.login
-      
+
       props.history.push("/"); //take you back to home page
     },
-     onError(err) {
+    onError(err) {
       setErrors(err.graphQLErrors[0].extensions.errors);
     },
     variables: {
@@ -43,8 +41,8 @@ function Register(props) {// getting props from parent element app.js
     },
   });
 
-  function registerUser(){
-      addUser()
+  function registerUser() {
+    addUser()
   }
 
   return (
